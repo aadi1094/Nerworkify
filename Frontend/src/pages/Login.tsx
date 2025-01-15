@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link, Links, useNavigate } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import { login } from '../Api'
-import { SignIn } from '@clerk/clerk-react'
+// import { SignIn } from '@clerk/clerk-react'
 
 const Login = () => {
     const navigate=useNavigate()
@@ -36,7 +36,7 @@ const Login = () => {
   return (
     <div className='min-h-screen flex justify-center items-center bg-[#003044]'>
         <Navbar/>
-        {/* <div className=' w-96  flex flex-col items-center'>
+        <div className=' w-96  flex flex-col items-center'>
             <h1 className='text-3xl font-thin items-center text-white'>Login</h1>
             <div className='flex flex-col gap-4 mt-7 w-full text-white'>
                 <input placeholder='Email'name="email" onChange={onChange} className='border-none rounded-xl px-3 py-2 w-full bg-[#1D4757] '/>
@@ -56,8 +56,8 @@ const Login = () => {
             <div className='text-white mt-4 '>
                 Don't have an account? <Link className='text-[#06DF7D]' to='/signup'> SignUp</Link>
             </div>
-        </div> */}
-        <SignIn forceRedirectUrl={"/home"} signUpForceRedirectUrl={"/home"} signUpUrl='/signup'/>
+        </div>
+        {/* <SignIn forceRedirectUrl={"/home"} signUpForceRedirectUrl={"/home"} signUpUrl='/signup'/> */}
         
             
     </div>
