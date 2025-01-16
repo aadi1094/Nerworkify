@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from '../assets/Logo.png'; 
 import { Bell, BriefcaseBusiness, BriefcaseConveyorBeltIcon, Globe, House, MessageSquareText, Rss, Search } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Nav_Home = () => {
 
@@ -13,10 +13,10 @@ const Nav_Home = () => {
 
   return (
     <nav className="bg-indigo-100 text-[#003044] flex items-center p-4 justify-between">
-        <div className="flex items-center px-5">
+        <Link to='/home'><div className="flex items-center px-5">
             <Rss />
             <h1 className="text-xl font-bold font-sans p-1">Networkify</h1>
-        </div>
+        </div></Link>
 
         <div className='flex bg-white/70  items-center '>
             <Search className='h-6 w-6 pl-2'/>
