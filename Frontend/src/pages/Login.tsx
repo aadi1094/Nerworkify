@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import { Link, Links, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import { login } from '../Api'
+import { setToken } from '../utils/axios'
 // import { SignIn } from '@clerk/clerk-react'
 
 const Login = () => {
@@ -26,6 +27,7 @@ const Login = () => {
         }else{
             const token=res.token;
             localStorage.setItem("token",token)
+            setToken(token)
             navigate("/home")
     
         }

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import { signup } from '../Api'
+import { setToken } from '../utils/axios'
 
 const Signup = () => {
 
@@ -28,6 +29,7 @@ const Signup = () => {
     }else{
         const token=res.token;
         localStorage.setItem("token",token)
+        setToken(token)
         navigate("/home")
 
     }

@@ -6,6 +6,7 @@ import Login from './pages/Login'
 // import { SignIn, SignUp } from '@clerk/clerk-react'
 import Signup from './pages/Signup'
 import Home from './pages/Home'
+import ProfilePage from './pages/ProfilePage'
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Route path='/' element={<Login />}/>
           <Route path='/signup' element={<Signup/>}/>
           <Route path='/home' element={<Home/>}/>
+          <Route path='/profile' element={<ProfilePage/>}/>
         </Routes>
       </BrowserRouter>
     </div>

@@ -25,6 +25,17 @@ const userSchema =new Schema({
     image:{
         type:String,
         default:"https://avatar.iran.liara.run/public/18"
+    },
+    about:{
+        type:String
+    },
+    address:{
+        type:String
+    },
+    connections:{
+        type:[mongoose.Types.ObjectId],
+        default:[],
+        ref:"User"
     }
 })
  const User=mongoose.model("User",userSchema)

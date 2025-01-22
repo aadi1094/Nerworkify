@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import Nav_Home from '../components/Nav_Home'
+import Nav_Home from '../components/Home/Nav_Home'
 import Profile from '../components/Profile'
 
 
