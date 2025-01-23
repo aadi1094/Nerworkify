@@ -130,3 +130,79 @@ export const profilePic=async(req,res)=>{
         })
     }
 }
+
+export const UpdateInfo=async(req,res)=>{
+    const userId = req.user.id; // Assuming `authenticateUser` sets req.user
+  const { username, about, address } = req.body;
+
+  try {
+    // Update user details
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      { username, about, address },
+      { new: true, runValidators: true } // Return the updated document
+    );
+
+    if (!updatedUser) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.status(200).json({ message: "Profile updated successfully", user: updatedUser });
+  } catch (error) {
+    console.error("Error updating user:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+
+}
+
+export const addEducation=async(req,res)=>{
+    const userId = req.user.id; // Assuming `authenticateUser` sets req.user
+  const { education } = req.body;
+
+  try {
+    // Update user details
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      { education },
+      { new: true, runValidators: true } // Return the updated document
+    );
+
+    if (!updatedUser) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.status(200).json({ message: "Profile updated successfully", user: updatedUser });
+  } catch (error) {
+    console.error("Error updating user:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+
+}
+
+
+export const deleteEducation = async (req, res) => {
+  const userId = req.user.id; 
+  const { educationId } = req.body; 
+  try {
+    
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      { $pull: { education: { _id: educationId } } }, 
+      { new: true } 
+    );
+
+    if (!updatedUser) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.status(200).json({
+      message: "Education entry deleted successfully",
+      user: updatedUser,
+    });
+  } catch (error) {
+    console.error("Error deleting education entry:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+

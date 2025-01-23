@@ -36,6 +36,26 @@ const userSchema =new Schema({
         type:[mongoose.Types.ObjectId],
         default:[],
         ref:"User"
+    },
+    education:{
+        type:[
+            {
+                instituteName:{
+                    type:String
+                },
+                qualification:{
+                    type:String
+                },
+                from:{
+                    type:Number
+                },
+                to:{
+                    type:Number
+                }
+
+            }
+        ],
+        default:[]
     }
 })
  const User=mongoose.model("User",userSchema)
