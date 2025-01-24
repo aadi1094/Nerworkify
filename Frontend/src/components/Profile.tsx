@@ -8,9 +8,9 @@ const Profile = () => {
   
   
   return (
-    <div>
+    <div className='col-span-3'>
        {
-        user ?  <div className="hidden md:block bg-indigo-50 p-4 shadow-md rounded-md w-72 m-7 h-full">
+        user ?  <div className="hidden md:block bg-indigo-50 p-4 shadow-md rounded-md w-72 max-h-fit">
         <div className="flex flex-col items-center">
             <Link to='/profile'><img src={user.image} alt="Profile" className="w-24 h-24 rounded-full border-2 border-white mb-4"/></Link>
             <Link to='/profile'><h2 className="text-xl font-bold text-[#1D4757]">{user.username}</h2></Link>

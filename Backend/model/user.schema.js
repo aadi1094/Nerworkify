@@ -56,6 +56,26 @@ const userSchema =new Schema({
             }
         ],
         default:[]
+    },
+    experience:{
+        type:[
+            {
+                companyRole:{
+                    type:String
+                },
+                companyName:{
+                    type:String
+                },
+                expfrom:{
+                    type:Number
+                },
+                expto:{
+                    type:String
+                }
+
+            }
+        ],
+        default:[]
     }
 })
  const User=mongoose.model("User",userSchema)

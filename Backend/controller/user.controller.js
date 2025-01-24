@@ -205,4 +205,53 @@ export const deleteEducation = async (req, res) => {
   }
 };
 
+export const addExperience=async(req,res)=>{
+  const userId = req.user.id; // Assuming `authenticateUser` sets req.user
+const { experience } = req.body;
+
+try {
+  // Update user details
+  const updatedUser = await User.findByIdAndUpdate(
+    userId,
+    { experience },
+    { new: true, runValidators: true } // Return the updated document
+  );
+
+  if (!updatedUser) {
+    return res.status(404).json({ message: "User not found" });
+  }
+
+  res.status(200).json({ message: "Profile updated successfully", user: updatedUser });
+} catch (error) {
+  console.error("Error updating user:", error);
+  res.status(500).json({ message: "Internal server error" });
+}
+
+}
+
+export const deleteExperience = async (req, res) => {
+  const userId = req.user.id; 
+  const { experienceId } = req.body; 
+  try {
+    
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      { $pull: { experience: { _id: experienceId } } }, 
+      { new: true } 
+    );
+
+    if (!updatedUser) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.status(200).json({
+      message: "Experience entry deleted successfully",
+      user: updatedUser,
+    });
+  } catch (error) {
+    console.error("Error deleting education entry:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
 
