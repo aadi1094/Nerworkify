@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Loader } from 'lucide-react';
-import useUser  from '../hooks/useUser';
+import useUser  from '../../hooks/useUser';
 
 
 const Profile = () => {

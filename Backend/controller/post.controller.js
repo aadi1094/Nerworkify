@@ -74,3 +74,33 @@ export const unlikePost = async (req, res) => {
         res.status(500).json({ message: 'Error unliking post', error });
     }
 };
+
+export const getProfilePost= async(req,res)=>{
+    try {
+        const userId=req.user.id
+
+        const post=await Post.find({
+            author:userId
+        }).populate("author")
+
+        res.status(200).json({ message: 'Get profile post',post });
+    } catch (error) {
+        res.status(500).json({ message: 'Error get profile post', error });
+    }
+}
+
+export const deletePost= async(req,res)=>{
+    try {
+        const postId=req.params.id
+        
+        const deletePost=await Post.findByIdAndDelete(postId)
+
+        res.status(200).json({
+            message:"Post deleted successfully",
+            deletePost
+        })
+        
+    } catch (error) {
+        res.status(500).json({ message: 'Error get delete post', error })
+    }
+}

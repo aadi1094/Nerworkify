@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import useUser from '../../hooks/useUser'
 import { axiosInstance } from '../../utils/axios'
-import axios from 'axios'
+
 import { Trash } from 'lucide-react'
 
 const Education = () => {

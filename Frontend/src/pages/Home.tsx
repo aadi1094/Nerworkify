@@ -2,7 +2,7 @@
 import Nav_Home from '../components/Home/Nav_Home'
 import Postform from '../components/Home/Postform'
 import { Posts } from '../components/Home/Posts'
-import Profile from '../components/Profile'
+import Profile from '../components/Home/Profile'
 
 
 

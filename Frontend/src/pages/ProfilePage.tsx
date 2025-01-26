@@ -5,6 +5,7 @@ import { axiosInstance } from "../utils/axios";
 import Nav_Home from "../components/Home/Nav_Home";
 import Education from "../components/ProfilePage/Education";
 import WorkExperience from "../components/ProfilePage/WorkExperience";
+import Posts from "../components/ProfilePage/Posts";
 
 const ProfilePage = () => {
   const { user } = useUser();
@@ -154,6 +155,7 @@ const ProfilePage = () => {
 
       <Education />
       <WorkExperience />
+      <Posts/>
     </div>
 
     </>
