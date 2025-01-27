@@ -255,3 +255,172 @@ export const deleteExperience = async (req, res) => {
 };
 
 
+export const addConnection = async (req, res) => {
+    try {
+        const userId = req.user.id // ID of the user making the request
+        const { connectionId } = req.body // ID of the user to connect with
+
+        // Validate if connectionId is provided
+        if (!connectionId) {
+            return res.status(400).json({
+                message: "Connection ID is required"
+            })
+        }
+
+        // Check if trying to connect with self
+        if (userId === connectionId) {
+            return res.status(400).json({
+                message: "Cannot connect with yourself"
+            })
+        }
+
+        // Find both users
+        const [user, connectionUser] = await Promise.all([
+            User.findById(userId),
+            User.findById(connectionId)
+        ])
+
+        // Validate if both users exist
+        if (!user || !connectionUser) {
+            return res.status(404).json({
+                message: "User not found"
+            })
+        }
+
+        // Check if connection already exists
+        if (user.connections.includes(connectionId)) {
+            return res.status(400).json({
+                message: "Connection already exists"
+            })
+        }
+
+        // Add connection to both users
+        user.connections.push(connectionId)
+        connectionUser.connections.push(userId)
+
+        // Save both updates
+        await Promise.all([
+            user.save(),
+            connectionUser.save()
+        ])
+
+        res.status(200).json({
+            message: "Connection added successfully",
+            user
+        })
+
+    } catch (error) {
+        console.error("Error in addConnection:", error)
+        res.status(500).json({
+            message: "Error adding connection"
+        })
+    }
+}
+
+export const removeConnection = async (req, res) => {
+    try {
+        const userId = req.user.id // ID of the user making the request
+        const { connectionId } = req.body // ID of the connection to remove
+
+        // Validate if connectionId is provided
+        if (!connectionId) {
+            return res.status(400).json({
+                message: "Connection ID is required"
+            })
+        }
+
+        // Find both users
+        const [user, connectionUser] = await Promise.all([
+            User.findById(userId),
+            User.findById(connectionId)
+        ])
+
+        // Validate if both users exist
+        if (!user || !connectionUser) {
+            return res.status(404).json({
+                message: "User not found"
+            })
+        }
+
+        // Check if connection exists
+        if (!user.connections.includes(connectionId)) {
+            return res.status(400).json({
+                message: "Connection does not exist"
+            })
+        }
+
+        // Remove connection from both users
+        user.connections = user.connections.filter(id => id.toString() !== connectionId)
+        connectionUser.connections = connectionUser.connections.filter(id => id.toString() !== userId)
+
+        // Save both updates
+        await Promise.all([
+            user.save(),
+            connectionUser.save()
+        ])
+
+        res.status(200).json({
+            message: "Connection removed successfully",
+            user
+        })
+
+    } catch (error) {
+        console.error("Error in removeConnection:", error)
+        res.status(500).json({
+            message: "Error removing connection"
+        })
+    }
+}
+
+export const getUserByName = async (req, res) => {
+    try {
+        const name = req.query.name;
+
+        // Use $regex for partial match (case-insensitive search)
+        const user = await User.find({
+            username: {
+                $regex: name,
+                $options: 'i', // 'i' makes it case-insensitive
+            },
+        });
+
+        if (!user || user.length === 0) {
+            return res.status(404).json({
+                message: "User not found",
+            });
+        }
+
+        res.status(200).json({
+            user,
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            message: "Error in getUserByName",
+        });
+    }
+};
+
+export const getUserById=async(req,res)=>{
+    try {
+
+        const id=req.params.id
+        const user=await User.findById(id)
+
+        if(!user){
+            return res.status(404).json({
+                    message:"User not Found"
+            })
+        }
+
+        res.status(200).json({
+            user
+        })
+
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            message:"Error in getUserby id"
+        })
+    }
+}
