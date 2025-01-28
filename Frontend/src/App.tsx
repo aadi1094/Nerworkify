@@ -8,6 +8,7 @@ import Signup from './pages/Signup'
 import Home from './pages/Home'
 import ProfilePage from './pages/ProfilePage'
 import UserProfilePage from './pages/UserProfilePage'
+import Network from './pages/Network'
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path='/home' element={<Home/>}/>
           <Route path='/profile' element={<ProfilePage/>}/>
           <Route path='/user/:id'element={<UserProfilePage/>}/>
+          <Route path='/network'element={<Network/>}/>
         </Routes>
       </BrowserRouter>
     </div>

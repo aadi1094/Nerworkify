@@ -95,8 +95,8 @@ const Nav_Home = () => {
             </div>
 
             <div className="gap-12 hidden md:flex">
-                <a href="#" className="flex justify-center flex-col items-center"><House/><h3 className='text-xs'>Home</h3></a>
-                <a href="#" className="flex justify-center flex-col items-center"><Globe/><h3 className='text-xs'>My Network</h3></a>
+                <a href="/home" className="flex justify-center flex-col items-center"><House/><h3 className='text-xs'>Home</h3></a>
+                <a href="/network" className="flex justify-center flex-col items-center"><Globe/><h3 className='text-xs'>My Network</h3></a>
                 <a href="#" className="flex justify-center flex-col items-center"><BriefcaseBusiness/><h3 className='text-xs'>Jobs</h3></a>
                 <a href="#" className="flex justify-center flex-col items-center"><MessageSquareText/><h3 className='text-xs'>Messaging</h3></a>
                 <a href="#" className="flex justify-center flex-col items-center"><Bell/><h3 className='text-xs'>Notifications</h3></a>
