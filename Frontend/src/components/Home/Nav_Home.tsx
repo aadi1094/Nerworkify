@@ -2,6 +2,8 @@ import { Bell, BriefcaseBusiness, Globe, House, Menu, MessageSquareText, Rss, Se
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { axiosInstance } from '../../utils/axios';
+import { useNotifications } from '@/hooks/useNotifications';
+import { NotificationButton } from '../Notifications/NotificationButton';
 
 const Nav_Home = () => {
     const [showMenu, setShowMenu] = useState(false);
@@ -10,6 +12,7 @@ const Nav_Home = () => {
     const [showResults, setShowResults] = useState(false);
     
     const navigate = useNavigate();
+    const { unreadCount } = useNotifications();
     
     const logout = () => {
         localStorage.removeItem("token");
@@ -95,11 +98,11 @@ const Nav_Home = () => {
             </div>
 
             <div className="gap-12 hidden md:flex">
-                <a href="/home" className="flex justify-center flex-col items-center"><House/><h3 className='text-xs'>Home</h3></a>
-                <a href="/network" className="flex justify-center flex-col items-center"><Globe/><h3 className='text-xs'>My Network</h3></a>
-                <a href="#" className="flex justify-center flex-col items-center"><BriefcaseBusiness/><h3 className='text-xs'>Jobs</h3></a>
-                <a href="#" className="flex justify-center flex-col items-center"><MessageSquareText/><h3 className='text-xs'>Messaging</h3></a>
-                <a href="#" className="flex justify-center flex-col items-center"><Bell/><h3 className='text-xs'>Notifications</h3></a>
+                <Link to="/home" className="flex justify-center flex-col items-center"><House/><h3 className='text-xs'>Home</h3></Link>
+                <Link to="/network" className="flex justify-center flex-col items-center"><Globe/><h3 className='text-xs'>My Network</h3></Link>
+                <Link to="#" className="flex justify-center flex-col items-center"><BriefcaseBusiness/><h3 className='text-xs'>Jobs</h3></Link>
+                <Link to="#" className="flex justify-center flex-col items-center"><MessageSquareText/><h3 className='text-xs'>Messaging</h3></Link>
+                <Link to="/notifications"><NotificationButton unreadCount={unreadCount} /></Link>
             </div>
 
             <div className="hidden md:flex justify-center items-center px-5">
@@ -114,11 +117,11 @@ const Nav_Home = () => {
 
             {showMenu && (
                 <aside className='fixed right-0 top-12 border-l h-full p-4 space-y-2 bg-white z-50'>
-                    <a href="#" className="flex gap-2 items-center"><House/><h3 className='text-xs'>Home</h3></a>
-                    <a href="#" className="flex gap-2 items-center"><Globe/><h3 className='text-xs'>My Network</h3></a>
+                    <a href="/home" className="flex gap-2 items-center"><House/><h3 className='text-xs'>Home</h3></a>
+                    <a href="/network" className="flex gap-2 items-center"><Globe/><h3 className='text-xs'>My Network</h3></a>
                     <a href="#" className="flex gap-2 items-center"><BriefcaseBusiness/><h3 className='text-xs'>Jobs</h3></a>
                     <a href="#" className="flex gap-2 items-center"><MessageSquareText/><h3 className='text-xs'>Messaging</h3></a>
-                    <a href="#" className="flex gap-2 items-center"><Bell/><h3 className='text-xs'>Notifications</h3></a>
+                    <a href="/notifications" className="flex gap-2 items-center"><Bell/><h3 className='text-xs'>Notifications</h3></a>
                 </aside>
             )}
         </nav>

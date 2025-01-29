@@ -2,6 +2,7 @@ import User from "../model/user.schema.js"
 import jwt from "jsonwebtoken"
 import bcrypt from "bcrypt"
 import { uploadImageFromDataURI } from "../config/cloudinary.js"
+import { createNotification } from "./notification.controller.js"
 
 export const SignUp=async(req,res)=>{
     try {
@@ -257,63 +258,57 @@ export const deleteExperience = async (req, res) => {
 
 export const addConnection = async (req, res) => {
     try {
-        const userId = req.user.id // ID of the user making the request
-        const { connectionId } = req.body // ID of the user to connect with
+        const userId = req.user.id;
+        const { connectionId } = req.body;
 
-        // Validate if connectionId is provided
         if (!connectionId) {
             return res.status(400).json({
                 message: "Connection ID is required"
-            })
+            });
         }
 
-        // Check if trying to connect with self
         if (userId === connectionId) {
             return res.status(400).json({
                 message: "Cannot connect with yourself"
-            })
+            });
         }
 
-        // Find both users
         const [user, connectionUser] = await Promise.all([
             User.findById(userId),
             User.findById(connectionId)
-        ])
+        ]);
 
-        // Validate if both users exist
         if (!user || !connectionUser) {
             return res.status(404).json({
                 message: "User not found"
-            })
+            });
         }
 
-        // Check if connection already exists
         if (user.connections.includes(connectionId)) {
             return res.status(400).json({
                 message: "Connection already exists"
-            })
+            });
         }
 
-        // Add connection to both users
-        user.connections.push(connectionId)
-        connectionUser.connections.push(userId)
+        user.connections.push(connectionId);
+        connectionUser.connections.push(userId);
 
-        // Save both updates
         await Promise.all([
             user.save(),
-            connectionUser.save()
-        ])
+            connectionUser.save(),
+            createNotification(connectionId, userId, 'CONNECTION')
+        ]);
 
         res.status(200).json({
             message: "Connection added successfully",
             user
-        })
+        });
 
     } catch (error) {
-        console.error("Error in addConnection:", error)
+        console.error("Error in addConnection:", error);
         res.status(500).json({
             message: "Error adding connection"
-        })
+        });
     }
 }
 

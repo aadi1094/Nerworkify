@@ -1,4 +1,5 @@
 import Post from "../model/post.schema.js"
+import { createNotification } from "./notification.controller.js"
 
 export const createPost=async(req,res)=>{
     try {
@@ -42,18 +43,27 @@ export const getPost=async(req,res)=>{
 
 export const likePost = async (req, res) => {
     const postId = req.params.id;
-    const userId = req.user.id; 
+    const userId = req.user.id;
+
     try {
         const post = await Post.findById(postId);
         if (!post.likes.includes(userId)) {
             post.likes.push(userId);
             await post.save();
+            
+            // Create notification for post like
+            if (post.author.toString() !== userId) {
+                await createNotification(post.author, userId, 'LIKE', postId);
+            }
+            
             res.status(200).json({ message: 'Post liked', post });
         } else {
             res.status(400).json({ message: 'Post already liked' });
         }
     } catch (error) {
+        console.log(error);
         res.status(500).json({ message: 'Error liking post', error });
+        
     }
 };
 

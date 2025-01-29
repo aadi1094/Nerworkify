@@ -64,7 +64,7 @@ const UserProfilePage: React.FC = () => {
 
   const handleConnect = async (): Promise<void> => {
     try {
-      await axiosInstance.post('/user/connections/add', { connectionId: id });
+      await axiosInstance.post('/user/add-connection', { connectionId: id });
       setIsConnected(true);
     } catch (error) {
       console.error('Error connecting with user:', error);
@@ -73,7 +73,7 @@ const UserProfilePage: React.FC = () => {
 
   const handleDisconnect = async (): Promise<void> => {
     try {
-      await axiosInstance.post('/user/connections/remove', { connectionId: id });
+      await axiosInstance.post('/user/remove-connection', { connectionId: id });
       setIsConnected(false);
     } catch (error) {
       console.error('Error disconnecting from user:', error);

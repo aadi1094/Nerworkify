@@ -37,8 +37,8 @@ userRouter.put("/addexperience", authenticate, addExperience)
 userRouter.put("/deleteexperience", authenticate, deleteExperience)
 
 // Connection routes - Updated to match frontend paths
-userRouter.post('/add-connection', authenticate, addConnection)  // Changed from connections/add
-userRouter.post('/remove-connection', authenticate, removeConnection)  // Changed from connections/remove
+userRouter.post('/add-connection', authenticate, addConnection)  
+userRouter.post('/remove-connection', authenticate, removeConnection)  
 
 // Search and get user routes
 userRouter.get('/search', authenticate, getUserByName);

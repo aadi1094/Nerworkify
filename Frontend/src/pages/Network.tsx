@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { UserMinus } from 'lucide-react';
 import { axiosInstance } from '../utils/axios';
+import Nav_Home from '../components/Home/Nav_Home';
 
 interface Connection {
   _id: string;
@@ -58,8 +59,10 @@ export default function Network() {
   }
 
   return (
-    <div className="min-h-screen px-4 bg-[#EEF2FF]">
-      <h1 className="text-3xl font-bold mb-8 text-gray-800 flex justify-center items-center">My Network</h1>
+    <>
+    <Nav_Home/>
+    <div className="min-h-screen px-4 bg-[#EEF2FF] pt-5">
+      <h1 className="text-3xl font-bold mb-8 text-gray-800 ">My Network</h1>
       
       {connections.length === 0 ? (
         <div className="text-center py-12">
@@ -103,5 +106,6 @@ export default function Network() {
         </div>
       )}
     </div>
+    </>
   );
 }
