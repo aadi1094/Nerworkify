@@ -4,6 +4,7 @@ import { UserPlus, UserMinus, Mail, MapPin, Loader } from 'lucide-react';
 import { axiosInstance } from '../utils/axios';
 import useUser from '../hooks/useUser';
 import Posts from '../components/ProfilePage/Posts';
+import Nav_Home from '@/components/Home/Nav_Home';
 
 interface Education {
   instituteName: string;
@@ -97,9 +98,11 @@ const UserProfilePage: React.FC = () => {
   }
 
   return (
+    <>
+    <Nav_Home/>
     <div className="min-h-screen bg-gray-50">
       {/* Profile Header */}
-      <div className="bg-white shadow">
+      <div className="bg-cyan-50 shadow">
         <div className="max-w-5xl mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
             {/* Profile Image */}
@@ -221,6 +224,7 @@ const UserProfilePage: React.FC = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

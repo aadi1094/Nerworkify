@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { NotificationItem } from '../components/Notifications/NotificationItem';
 import { Notification } from '../components/Notifications/types';
 import { axiosInstance } from '@/utils/axios';
+import Nav_Home from '@/components/Home/Nav_Home';
 // import { NotificationItem } from './NotificationItem';
 // import type { Notification } from './types';
 
@@ -67,6 +68,8 @@ const NotificationsPage = () => {
   }
 
   return (
+    <>
+    <Nav_Home/>
     <div className="max-w-2xl mx-auto p-4">
       <h1 className="text-2xl font-bold mb-6">Notifications</h1>
       {notifications.length === 0 ? (
@@ -84,6 +87,7 @@ const NotificationsPage = () => {
         </div>
       )}
     </div>
+    </>
   );
 };
 
