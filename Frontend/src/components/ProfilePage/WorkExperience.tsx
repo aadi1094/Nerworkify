@@ -2,20 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { Plus, Trash, X, Save, Briefcase } from 'lucide-react';
 import useUser from '../../hooks/useUser';
 import { axiosInstance } from '../../utils/axios';
+import { Card, CardContent } from '@/components/ui/card';
 
-const WorkExperience = () => {
+export const WorkExperience = () => {
   const { user } = useUser();
   const [isAdding, setIsAdding] = useState(false);
-  const [formData, setFormData] = useState([
-    {
-      companyRole: "",
-      companyName: "",
-      expto: "",
-      expfrom: ""
-    }
-  ]);
+  const [formData, setFormData] = useState([{
+    companyRole: "",
+    companyName: "",
+    expto: "",
+    expfrom: ""
+  }]);
 
-  const onChangeFormData = (e: React.ChangeEvent<HTMLInputElement>, index:number) => {
+  const onChangeFormData = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
     setFormData(formData.map((data, i) => {
       if (i === index) {
         return {
@@ -39,7 +38,7 @@ const WorkExperience = () => {
     }
   };
 
-  const deleteExperience = async (id:string) => {
+  const deleteExperience = async (id: string) => {
     try {
       await axiosInstance.put("/user/deleteexperience", { experienceId: id });
       window.location.reload();
@@ -55,14 +54,17 @@ const WorkExperience = () => {
   }, [user]);
 
   return (
-    <div className="w-full max-w-2xl mx-auto mt-8 bg-white rounded-xl shadow-md overflow-hidden">
-      <div className="p-6">
+    <Card className="bg-white/80 backdrop-blur-sm hover:shadow-lg transition-all duration-300">
+      <CardContent className="p-6">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-bold text-gray-800">Work Experience</h2>
+          <div className="flex items-center space-x-2">
+            <Briefcase className="w-6 h-6 text-fuchsia-600" />
+            <h2 className="text-2xl font-bold text-gray-800">Work Experience</h2>
+          </div>
           {!isAdding && (
             <button
               onClick={() => setIsAdding(true)}
-              className="flex items-center space-x-2 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors duration-200"
+              className="flex items-center space-x-2 px-4 py-2 bg-fuchsia-600 text-white rounded-lg hover:bg-fuchsia-700 transition-all duration-200 shadow-sm hover:shadow"
             >
               <Plus className="w-5 h-5" />
               <span>Add Experience</span>
@@ -73,14 +75,14 @@ const WorkExperience = () => {
         {!isAdding && (
           <div className="space-y-6">
             {user && user.experience.length > 0 ? (
-              user.experience.map((exp:any, index:number) => (
+              user.experience.map((exp: any, index: number) => (
                 <div
                   key={index}
                   className="flex justify-between items-start p-4 border rounded-lg hover:shadow-md transition-shadow duration-200"
                 >
                   <div className="flex-1">
                     <div className="flex items-center space-x-2">
-                      <Briefcase className="w-5 h-5 text-green-500" />
+                      <Briefcase className="w-5 h-5 text-fuchsia-600" />
                       <h3 className="text-xl font-semibold text-gray-800">{exp.companyRole}</h3>
                     </div>
                     <p className="text-gray-600 mt-1">{exp.companyName}</p>
@@ -118,7 +120,7 @@ const WorkExperience = () => {
                       name="companyRole"
                       value={data.companyRole}
                       onChange={(e) => onChangeFormData(e, index)}
-                      className="w-full p-2 border rounded-md focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                      className="w-full p-2 border rounded-md focus:ring-2 focus:ring-fuchsia-500 focus:border-fuchsia-500"
                       placeholder="e.g. Software Engineer"
                     />
                   </div>
@@ -132,7 +134,7 @@ const WorkExperience = () => {
                       name="companyName"
                       value={data.companyName}
                       onChange={(e) => onChangeFormData(e, index)}
-                      className="w-full p-2 border rounded-md focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                      className="w-full p-2 border rounded-md focus:ring-2 focus:ring-fuchsia-500 focus:border-fuchsia-500"
                       placeholder="e.g. Tech Corp Inc."
                     />
                   </div>
@@ -147,7 +149,7 @@ const WorkExperience = () => {
                         name="expfrom"
                         value={data.expfrom}
                         onChange={(e) => onChangeFormData(e, index)}
-                        className="w-full p-2 border rounded-md focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                        className="w-full p-2 border rounded-md focus:ring-2 focus:ring-fuchsia-500 focus:border-fuchsia-500"
                         placeholder="e.g. 2020"
                       />
                     </div>
@@ -160,7 +162,7 @@ const WorkExperience = () => {
                         name="expto"
                         value={data.expto}
                         onChange={(e) => onChangeFormData(e, index)}
-                        className="w-full p-2 border rounded-md focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                        className="w-full p-2 border rounded-md focus:ring-2 focus:ring-fuchsia-500 focus:border-fuchsia-500"
                         placeholder="e.g. 2023 or Present"
                       />
                     </div>
@@ -179,7 +181,7 @@ const WorkExperience = () => {
               </button>
               <button
                 onClick={saveExperience}
-                className="flex items-center space-x-2 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors duration-200"
+                className="flex items-center space-x-2 px-4 py-2 bg-fuchsia-600 text-white rounded-lg hover:bg-fuchsia-700 transition-all duration-200"
               >
                 <Save className="w-5 h-5" />
                 <span>Save</span>
@@ -187,10 +189,9 @@ const WorkExperience = () => {
             </div>
           </div>
         )}
-      </div>
-      </div>)
-      
-    }
+      </CardContent>
+    </Card>
+  );
+};
 
-
-    export default WorkExperience
+export default WorkExperience;

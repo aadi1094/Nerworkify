@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import { UserPlus, UserMinus, Mail, MapPin, Loader } from 'lucide-react';
 import { axiosInstance } from '../utils/axios';
 import useUser from '../hooks/useUser';
-import Posts from '../components/ProfilePage/Posts';
 import Nav_Home from '@/components/Home/Nav_Home';
 
 interface Education {
@@ -100,49 +99,49 @@ const UserProfilePage: React.FC = () => {
   return (
     <>
     <Nav_Home/>
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50">
       {/* Profile Header */}
-      <div className="bg-cyan-50 shadow">
-        <div className="max-w-5xl mx-auto px-4 py-6">
-          <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
+      <div className="bg-white shadow-md">
+        <div className="max-w-5xl mx-auto px-6 py-8">
+          <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
             {/* Profile Image */}
-            <div className="w-32 h-32 md:w-40 md:h-40">
+            <div className="w-40 h-40">
               <img
                 src={user.image}
                 alt={user.username}
-                className="w-full h-full rounded-full object-cover border-4 border-gray-100"
+                className="w-full h-full rounded-full object-cover border-4 border-indigo-500 shadow-md transition-transform hover:scale-105 duration-300"
               />
             </div>
 
             {/* Profile Info */}
-            <div className="flex-1 text-center md:text-left">
-              <h1 className="text-3xl font-bold text-gray-900">{user.username}</h1>
+            <div className="flex-1 text-center md:text-left space-y-4">
+              <h1 className="text-3xl font-bold text-gray-800">{user.username}</h1>
               
               {user.about && (
-                <p className="mt-2 text-gray-600 max-w-2xl">{user.about}</p>
+                <p className="text-gray-600 max-w-2xl leading-relaxed">{user.about}</p>
               )}
               
-              <div className="mt-4 flex flex-wrap items-center justify-center md:justify-start gap-4">
+              <div className="flex flex-wrap items-center justify-center md:justify-start gap-6">
                 {user.address && (
-                  <div className="flex items-center text-gray-600">
-                    <MapPin className="w-4 h-4 mr-1" />
+                  <div className="flex items-center text-gray-600 hover:text-indigo-600 transition-colors">
+                    <MapPin className="w-5 h-5 mr-2" />
                     <span>{user.address}</span>
                   </div>
                 )}
                 
-                <div className="flex items-center text-gray-600">
-                  <Mail className="w-4 h-4 mr-1" />
+                <div className="flex items-center text-gray-600 hover:text-indigo-600 transition-colors">
+                  <Mail className="w-5 h-5 mr-2" />
                   <span>{user.email}</span>
                 </div>
               </div>
 
               {/* Connection Stats */}
-              <div className="mt-4 flex items-center justify-center md:justify-start gap-6">
-                <div className="text-center">
-                  <div className="text-xl font-semibold text-gray-900">
+              <div className="flex items-center justify-center md:justify-start gap-6">
+                <div className="text-center md:text-left">
+                  <div className="text-2xl font-semibold text-indigo-600">
                     {user.connections?.length || 0}
                   </div>
-                  <div className="text-sm text-gray-500">Connections</div>
+                  <div className="text-sm text-gray-500 font-medium">Connections</div>
                 </div>
               </div>
             </div>
@@ -152,10 +151,10 @@ const UserProfilePage: React.FC = () => {
               {currentUser && currentUser._id !== id && (
                 <button
                   onClick={isConnected ? handleDisconnect : handleConnect}
-                  className={`flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium transition-colors
+                  className={`flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-medium transition-all duration-300
                     ${isConnected 
-                      ? 'bg-gray-100 text-gray-700 hover:bg-gray-200' 
-                      : 'bg-blue-500 text-white hover:bg-blue-600'}`}
+                      ? 'bg-gray-100 text-gray-700 hover:bg-gray-200 hover:shadow-md' 
+                      : 'bg-indigo-500 text-white hover:bg-indigo-600 hover:shadow-md'}`}
                 >
                   {isConnected ? (
                     <>
@@ -176,19 +175,19 @@ const UserProfilePage: React.FC = () => {
       </div>
 
       {/* Content Sections */}
-      <div className="max-w-5xl mx-auto px-4 py-8">
+      <div className="max-w-5xl mx-auto px-6 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Left Column - Education & Experience */}
           <div className="space-y-6">
             {/* Education Section */}
-            <div className="bg-white rounded-lg shadow p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4">Education</h2>
+            <div className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
+              <h2 className="text-xl font-semibold text-gray-800 mb-4 border-b pb-2">Education</h2>
               {user.education && user.education.length > 0 ? (
                 <div className="space-y-4">
                   {user.education.map((edu, index) => (
-                    <div key={index} className="border-b last:border-0 pb-4 last:pb-0">
-                      <h3 className="font-medium text-gray-900">{edu.instituteName}</h3>
-                      <p className="text-gray-600">{edu.qualification}</p>
+                    <div key={index} className="border-b last:border-0 pb-4 last:pb-0 hover:bg-gray-50 transition-colors rounded-md p-2">
+                      <h3 className="font-medium text-indigo-600">{edu.instituteName}</h3>
+                      <p className="text-gray-800 font-medium">{edu.qualification}</p>
                       <p className="text-sm text-gray-500">{edu.from} - {edu.to}</p>
                     </div>
                   ))}
@@ -199,14 +198,14 @@ const UserProfilePage: React.FC = () => {
             </div>
 
             {/* Experience Section */}
-            <div className="bg-white rounded-lg shadow p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4">Experience</h2>
+            <div className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
+              <h2 className="text-xl font-semibold text-gray-800 mb-4 border-b pb-2">Experience</h2>
               {user.experience && user.experience.length > 0 ? (
                 <div className="space-y-4">
                   {user.experience.map((exp, index) => (
-                    <div key={index} className="border-b last:border-0 pb-4 last:pb-0">
-                      <h3 className="font-medium text-gray-900">{exp.companyRole}</h3>
-                      <p className="text-gray-600">{exp.companyName}</p>
+                    <div key={index} className="border-b last:border-0 pb-4 last:pb-0 hover:bg-gray-50 transition-colors rounded-md p-2">
+                      <h3 className="font-medium text-indigo-600">{exp.companyRole}</h3>
+                      <p className="text-gray-800 font-medium">{exp.companyName}</p>
                       <p className="text-sm text-gray-500">{exp.expfrom} - {exp.expto}</p>
                     </div>
                   ))}

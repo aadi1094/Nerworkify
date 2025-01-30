@@ -46,7 +46,7 @@ const Nav_Home = () => {
     }, [searchTerm]);
 
     return (
-        <nav className="bg-indigo-100 text-[#003044] flex items-center p-1 md:p-4 justify-between relative">
+        <nav className="bg-white/80 text-[#4B0082] flex items-center p-1 md:p-4 justify-between relative border-b">
             <Link to='/home'>
                 <div className="flex items-center px-5">
                     <Rss />
@@ -56,7 +56,7 @@ const Nav_Home = () => {
 
             <div className='relative flex-1 max-w-md mx-4'>
                 <div className='flex bg-white/70 items-center rounded-md'>
-                    <Search className='h-4 w-4 mx-1'/>
+                    <Search className='h-4 w-4 mx-1 text-[#4B0082]'/>
                     <input 
                         className='w-full h-8 bg-white/70 p-2 focus:outline-none focus:border-none rounded-md'
                         placeholder='Search users'
@@ -98,15 +98,15 @@ const Nav_Home = () => {
             </div>
 
             <div className="gap-12 hidden md:flex">
-                <Link to="/home" className="flex justify-center flex-col items-center"><House/><h3 className='text-xs'>Home</h3></Link>
-                <Link to="/network" className="flex justify-center flex-col items-center"><Globe/><h3 className='text-xs'>My Network</h3></Link>
-                <Link to="#" className="flex justify-center flex-col items-center"><BriefcaseBusiness/><h3 className='text-xs'>Jobs</h3></Link>
-                <Link to="#" className="flex justify-center flex-col items-center"><MessageSquareText/><h3 className='text-xs'>Messaging</h3></Link>
-                <Link to="/notifications"><NotificationButton unreadCount={unreadCount} /></Link>
+                <Link to="/home" className="flex justify-center flex-col items-center text-[#4B0082]"><House/><h3 className='text-xs'>Home</h3></Link>
+                <Link to="/network" className="flex justify-center flex-col items-center text-[#4B0082]"><Globe/><h3 className='text-xs'>My Network</h3></Link>
+                <Link to="#" className="flex justify-center flex-col items-center text-[#4B0082]"><BriefcaseBusiness/><h3 className='text-xs'>Jobs</h3></Link>
+                <Link to="#" className="flex justify-center flex-col items-center text-[#4B0082]"><MessageSquareText/><h3 className='text-xs'>Messaging</h3></Link>
+                <Link to="/notifications" className="text-[#4B0082]"><NotificationButton unreadCount={unreadCount} /></Link>
             </div>
 
             <div className="hidden md:flex justify-center items-center px-5">
-                <button onClick={logout} className="text-xs md:text-sm p-2 bg-indigo-400 rounded-md text-pretty">
+                <button onClick={logout} className="text-xs md:text-sm p-2 bg-[#4B0082] rounded-md text-white">
                     Logout
                 </button>
             </div>
@@ -117,11 +117,11 @@ const Nav_Home = () => {
 
             {showMenu && (
                 <aside className='fixed right-0 top-12 border-l h-full p-4 space-y-2 bg-white z-50'>
-                    <a href="/home" className="flex gap-2 items-center"><House/><h3 className='text-xs'>Home</h3></a>
-                    <a href="/network" className="flex gap-2 items-center"><Globe/><h3 className='text-xs'>My Network</h3></a>
-                    <a href="#" className="flex gap-2 items-center"><BriefcaseBusiness/><h3 className='text-xs'>Jobs</h3></a>
-                    <a href="#" className="flex gap-2 items-center"><MessageSquareText/><h3 className='text-xs'>Messaging</h3></a>
-                    <a href="/notifications" className="flex gap-2 items-center"><Bell/><h3 className='text-xs'>Notifications</h3></a>
+                    <a href="/home" className="flex gap-2 items-center text-[#4B0082]"><House/><h3 className='text-xs'>Home</h3></a>
+                    <a href="/network" className="flex gap-2 items-center text-[#4B0082]"><Globe/><h3 className='text-xs'>My Network</h3></a>
+                    <a href="#" className="flex gap-2 items-center text-[#4B0082]"><BriefcaseBusiness/><h3 className='text-xs'>Jobs</h3></a>
+                    <a href="#" className="flex gap-2 items-center text-[#4B0082]"><MessageSquareText/><h3 className='text-xs'>Messaging</h3></a>
+                    <a href="/notifications" className="flex gap-2 items-center text-[#4B0082]"><Bell/><h3 className='text-xs'>Notifications</h3></a>
                 </aside>
             )}
         </nav>

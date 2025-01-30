@@ -59,9 +59,9 @@ export default function Network() {
   }
 
   return (
-    <>
+    <div className='min-h-screen'>
     <Nav_Home/>
-    <div className="min-h-screen px-4  pt-5">
+    <div className="sm:px-32 px-2  pt-5">
       <h1 className="text-3xl font-bold mb-8 text-gray-800 ">My Network</h1>
       
       {connections.length === 0 ? (
@@ -106,6 +106,6 @@ export default function Network() {
         </div>
       )}
     </div>
-    </>
+    </div>
   );
 }
