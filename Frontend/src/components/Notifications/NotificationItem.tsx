@@ -26,7 +26,7 @@ export const NotificationItem: FC<NotificationItemProps> = ({ notification }) =>
     switch (notification.type) {
       case 'LIKE':
         return (
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 ">
             <img 
               src={notification.sender.image} 
               alt={notification.sender.username}
@@ -63,8 +63,8 @@ export const NotificationItem: FC<NotificationItemProps> = ({ notification }) =>
   };
 
   return (
-    <Card className={`mb-3 ${!notification.read ? 'bg-blue-50' : 'bg-white'}`}>
-      <CardContent className="p-4">
+    <Card className={`mb-3  ${!notification.read ? 'bg-blue-50' : 'bg-white'}`}>
+      <CardContent className="p-4 bg-[#EEF2FF]">
         {getMessage()}
         <div className="text-xs text-gray-500 mt-2">
           {formatTime(notification.createdAt)}
