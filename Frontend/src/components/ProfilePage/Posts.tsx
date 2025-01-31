@@ -91,10 +91,13 @@ const Posts = () => {
 
                 {/* Post Content */}
                 <div className="p-6">
+                  {data.role && <h1 className='mt-4 font-semibold font-serif text-xl'>Role : {data.role}</h1>}
                   <p className="text-gray-700 text-lg leading-relaxed">
                     {data.content}
                   </p>
+                  {data.link && 
                   <a href={data.link} target="_blank" className="mt-4 text-blue-800 flex gap-2"><ArrowUpRight/> Apply</a>
+                  }
                 </div>
 
                 {/* Post Actions */}
@@ -136,7 +139,7 @@ const Posts = () => {
                   </div>
                 </div>
               </div>
-            ))
+            )).reverse()
           ) : (
             <div className="text-center py-12 px-6 bg-gradient-to-r from-violet-50 to-fuchsia-50 rounded-xl border border-violet-100">
               <MessageSquare className="w-12 h-12 text-violet-300 mx-auto mb-4" />

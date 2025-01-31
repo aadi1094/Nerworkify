@@ -26,6 +26,10 @@ const postSchema = new mongoose.Schema({
     link:{
         type:String,
         default: ''
+    },
+    role:{
+        type:String,
+        default: ''
     }
 })
 

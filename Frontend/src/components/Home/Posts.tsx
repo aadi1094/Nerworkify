@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import { axiosInstance } from '../../utils/axios';
-import { ThumbsUp, MessageCircle, Share2, MessageSquare, MoreVertical, Heart, ArrowUpRight } from 'lucide-react';
+import { Share2, MessageSquare, MoreVertical, Heart, ArrowUpRight } from 'lucide-react';
+import useUser from '@/hooks/useUser';
 
 export const Posts = () => {
   const [posts, setPosts] = useState<any[]>([]);
-  const [userId, setUserId] = useState<string>(''); // User ID
+  const [userId, setUserId] = useState<string>(''); 
+  const {user} = useUser()
 
   // Get the userId from the token
   useEffect(() => {
@@ -17,10 +19,18 @@ export const Posts = () => {
 
   const getPosts = async () => {
     try {
-      const res = await axiosInstance.get('/post/getpost');
-      console.log('Posts:', res.data.post);
+      // First get user's connections
+      const connections = user.connections;
       
-      setPosts(res.data.post);
+      // Get all posts
+      const postsRes = await axiosInstance.get('/post/getpost');
+      
+      // Filter posts to only show those from connections
+      const filteredPosts = postsRes.data.post.filter((post:any) => 
+        connections.includes(post.author._id) || post.author._id === userId
+      );
+      
+      setPosts(filteredPosts);
     } catch (error) {
       console.log('Error fetching posts', error);
     }
@@ -46,7 +56,7 @@ export const Posts = () => {
 
   useEffect(() => {
     getPosts();
-  }, []);
+  }, [user]);
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {
@@ -86,10 +96,14 @@ export const Posts = () => {
                 </button>
               )}
             </div>
+            
 
-            <p className="mt-4 text-[#374151]">{data.content}</p>
+              {data.role && <h1 className='mt-4 font-semibold font-serif text-xl'>Role : {data.role}</h1>}
+            <p className=" text-[#374151]">{data.content}</p>
+            {data.link && 
             <a href={data.link} target="_blank" className="mt-4 text-blue-800 flex gap-2"><ArrowUpRight/> Apply</a>
 
+            }
             {data.image && (
               <img
                 src={data.image}
@@ -118,7 +132,7 @@ export const Posts = () => {
               </button>
             </div>
           </div>
-        ))}
+        )).reverse()}
 
         {(!posts || posts.length === 0) && (
           <div className="text-center py-10 bg-white rounded-xl shadow">

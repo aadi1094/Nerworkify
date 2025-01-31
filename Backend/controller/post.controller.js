@@ -4,12 +4,13 @@ import { createNotification } from "./notification.controller.js"
 export const createPost=async(req,res)=>{
     try {
         const userId=req.user.id
-        const {content,media,link}=req.body
+        const {content,media,link,role}=req.body
 
         await Post.create({
             content,
             media,
             link,
+            role,
             author:userId
         })
 
@@ -28,7 +29,7 @@ export const createPost=async(req,res)=>{
 export const getPost=async(req,res)=>{
     try {
 
-        const post=await Post.find({}).populate("author")
+        const post=await Post.find().populate("author")
 
         res.status(200).json({
             post

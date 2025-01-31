@@ -100,7 +100,7 @@ const Nav_Home = () => {
             <div className="gap-12 hidden md:flex">
                 <Link to="/home" className="flex justify-center flex-col items-center text-[#4B0082]"><House/><h3 className='text-xs'>Home</h3></Link>
                 <Link to="/network" className="flex justify-center flex-col items-center text-[#4B0082]"><Globe/><h3 className='text-xs'>My Network</h3></Link>
-                <Link to="#" className="flex justify-center flex-col items-center text-[#4B0082]"><BriefcaseBusiness/><h3 className='text-xs'>Jobs</h3></Link>
+                <Link to="/jobs" className="flex justify-center flex-col items-center text-[#4B0082]"><BriefcaseBusiness/><h3 className='text-xs'>Jobs</h3></Link>
                 <Link to="/addConnection" className="flex justify-center flex-col items-center text-[#4B0082]"><Users/><h3 className='text-xs'>Add connection</h3></Link>
                 <Link to="/notifications" className="text-[#4B0082]"><NotificationButton unreadCount={unreadCount} /></Link>
             </div>
@@ -119,7 +119,7 @@ const Nav_Home = () => {
                 <aside className='fixed right-0 top-12 border-l h-full p-4 space-y-2 bg-white z-50'>
                     <a href="/home" className="flex gap-2 items-center text-[#4B0082]"><House/><h3 className='text-xs'>Home</h3></a>
                     <a href="/network" className="flex gap-2 items-center text-[#4B0082]"><Globe/><h3 className='text-xs'>My Network</h3></a>
-                    <a href="#" className="flex gap-2 items-center text-[#4B0082]"><BriefcaseBusiness/><h3 className='text-xs'>Jobs</h3></a>
+                    <a href="/jobs" className="flex gap-2 items-center text-[#4B0082]"><BriefcaseBusiness/><h3 className='text-xs'>Jobs</h3></a>
                     <a href="/addConnection" className="flex gap-2 items-center text-[#4B0082]"><Users/><h3 className='text-xs'>Messaging</h3></a>
                     <a href="/notifications" className="flex gap-2 items-center text-[#4B0082]"><Bell/><h3 className='text-xs'>Notifications</h3></a>
                 </aside>
