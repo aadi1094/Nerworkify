@@ -4,11 +4,12 @@ import { createNotification } from "./notification.controller.js"
 export const createPost=async(req,res)=>{
     try {
         const userId=req.user.id
-        const {content,media}=req.body
+        const {content,media,link}=req.body
 
         await Post.create({
             content,
             media,
+            link,
             author:userId
         })
 

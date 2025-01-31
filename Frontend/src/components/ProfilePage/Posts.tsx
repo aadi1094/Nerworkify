@@ -1,5 +1,5 @@
 
-import { ThumbsUp, Trash, MessageCircle, Share2, MessageSquare } from 'lucide-react';
+import { ThumbsUp, Trash, MessageCircle, Share2, MessageSquare, ArrowUpLeft, ArrowUpRight } from 'lucide-react';
 import { Card, CardContent } from "@/components/ui/card";
 import useUser from '../../hooks/useUser';
 import { axiosInstance } from '../../utils/axios';
@@ -94,6 +94,7 @@ const Posts = () => {
                   <p className="text-gray-700 text-lg leading-relaxed">
                     {data.content}
                   </p>
+                  <a href={data.link} target="_blank" className="mt-4 text-blue-800 flex gap-2"><ArrowUpRight/> Apply</a>
                 </div>
 
                 {/* Post Actions */}

@@ -10,6 +10,7 @@ import ProfilePage from './pages/ProfilePage'
 import UserProfilePage from './pages/UserProfilePage'
 import Network from './pages/Network'
 import NotificationsPage from './pages/Notification'
+import AddConnection from './pages/AddConnection'
 
 
 function App() {
@@ -26,6 +27,8 @@ function App() {
           <Route path='/user/:id'element={<UserProfilePage/>}/>
           <Route path='/network'element={<Network/>}/>
           <Route path="/notifications" element={<NotificationsPage/>} />
+          <Route path="/addConnection" element={<AddConnection/>} />
+
         </Routes>
       </BrowserRouter>
     </div>

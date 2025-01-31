@@ -71,7 +71,7 @@ export default function Network() {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {connections.map((connection) => (
-            <div key={connection._id} className="bg-[#EEF2FF] rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-200">
+            <div key={connection._id} className="bg-[#f9f9f9] rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-200">
               <div className="flex items-start justify-between">
                 <div className="flex items-center space-x-4">
                   <img
@@ -96,7 +96,7 @@ export default function Network() {
               <div className="mt-4 flex justify-end">
                 <button
                   onClick={() => window.location.href = `/user/${connection._id}`}
-                  className="text-blue-600 hover:text-blue-800 text-sm font-medium"
+                  className="text-[#4B0082] hover:text-indigo-700 text-sm font-medium"
                 >
                   View Profile
                 </button>

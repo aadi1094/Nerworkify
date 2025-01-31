@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { axiosInstance } from '../../utils/axios';
-import { ThumbsUp, MessageCircle, Share2, MessageSquare, MoreVertical, Heart } from 'lucide-react';
+import { ThumbsUp, MessageCircle, Share2, MessageSquare, MoreVertical, Heart, ArrowUpRight } from 'lucide-react';
 
 export const Posts = () => {
   const [posts, setPosts] = useState<any[]>([]);
@@ -18,6 +18,8 @@ export const Posts = () => {
   const getPosts = async () => {
     try {
       const res = await axiosInstance.get('/post/getpost');
+      console.log('Posts:', res.data.post);
+      
       setPosts(res.data.post);
     } catch (error) {
       console.log('Error fetching posts', error);
@@ -86,6 +88,7 @@ export const Posts = () => {
             </div>
 
             <p className="mt-4 text-[#374151]">{data.content}</p>
+            <a href={data.link} target="_blank" className="mt-4 text-blue-800 flex gap-2"><ArrowUpRight/> Apply</a>
 
             {data.image && (
               <img

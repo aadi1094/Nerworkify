@@ -8,6 +8,7 @@ import {
     GetUser, 
     getUserById, 
     getUserByName, 
+    GetUsers, 
     Login, 
     profilePic, 
     removeConnection, 
@@ -24,6 +25,7 @@ userRouter.post("/signup", SignUp)
 userRouter.post("/login", Login)
 
 // User profile routes
+userRouter.get("/getusers", authenticate, GetUsers)
 userRouter.get("/getuser", authenticate, GetUser)
 userRouter.put("/updateprofile", authenticate, upload.single('profile'), profilePic)
 userRouter.put("/updateinfo", authenticate, UpdateInfo)

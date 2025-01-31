@@ -1,4 +1,4 @@
-import { Bell, BriefcaseBusiness, Globe, House, Menu, MessageSquareText, Rss, Search } from 'lucide-react';
+import { Bell, BriefcaseBusiness, Globe, House, Menu, MessageSquareText, Rss, Search, Users } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { axiosInstance } from '../../utils/axios';
@@ -101,7 +101,7 @@ const Nav_Home = () => {
                 <Link to="/home" className="flex justify-center flex-col items-center text-[#4B0082]"><House/><h3 className='text-xs'>Home</h3></Link>
                 <Link to="/network" className="flex justify-center flex-col items-center text-[#4B0082]"><Globe/><h3 className='text-xs'>My Network</h3></Link>
                 <Link to="#" className="flex justify-center flex-col items-center text-[#4B0082]"><BriefcaseBusiness/><h3 className='text-xs'>Jobs</h3></Link>
-                <Link to="#" className="flex justify-center flex-col items-center text-[#4B0082]"><MessageSquareText/><h3 className='text-xs'>Messaging</h3></Link>
+                <Link to="/addConnection" className="flex justify-center flex-col items-center text-[#4B0082]"><Users/><h3 className='text-xs'>Add connection</h3></Link>
                 <Link to="/notifications" className="text-[#4B0082]"><NotificationButton unreadCount={unreadCount} /></Link>
             </div>
 
@@ -120,7 +120,7 @@ const Nav_Home = () => {
                     <a href="/home" className="flex gap-2 items-center text-[#4B0082]"><House/><h3 className='text-xs'>Home</h3></a>
                     <a href="/network" className="flex gap-2 items-center text-[#4B0082]"><Globe/><h3 className='text-xs'>My Network</h3></a>
                     <a href="#" className="flex gap-2 items-center text-[#4B0082]"><BriefcaseBusiness/><h3 className='text-xs'>Jobs</h3></a>
-                    <a href="#" className="flex gap-2 items-center text-[#4B0082]"><MessageSquareText/><h3 className='text-xs'>Messaging</h3></a>
+                    <a href="/addConnection" className="flex gap-2 items-center text-[#4B0082]"><Users/><h3 className='text-xs'>Messaging</h3></a>
                     <a href="/notifications" className="flex gap-2 items-center text-[#4B0082]"><Bell/><h3 className='text-xs'>Notifications</h3></a>
                 </aside>
             )}
