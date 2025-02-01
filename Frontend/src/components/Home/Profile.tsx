@@ -10,7 +10,7 @@ const Profile = () => {
   return (
     <div className='col-span-3'>
        {
-        user ?  <div className="hidden md:block bg-gradient-to-r from-violet-600 to-fuchsia-600 p-4 shadow-md rounded-md w-72 max-h-fit">
+        user ?  <div className="hidden md:block bg-gradient-to-tr from-fuchsia-500 to-purple-900 p-4 shadow-md rounded-md w-72 max-h-fit">
         <div className="flex flex-col items-center">
             <Link to='/profile'><img src={user.image} alt="Profile" className="w-24 h-24 rounded-full border-2 border-white mb-4"/></Link>
             <Link to='/profile'><h2 className="text-xl font-bold text-white">{user.username}</h2></Link>

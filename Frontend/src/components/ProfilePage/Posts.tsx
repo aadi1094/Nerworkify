@@ -1,5 +1,5 @@
 
-import { ThumbsUp, Trash, MessageCircle, Share2, MessageSquare, ArrowUpLeft, ArrowUpRight } from 'lucide-react';
+import { ThumbsUp, Trash, MessageCircle, Share2, MessageSquare,  ArrowUpRight } from 'lucide-react';
 import { Card, CardContent } from "@/components/ui/card";
 import useUser from '../../hooks/useUser';
 import { axiosInstance } from '../../utils/axios';

@@ -1,4 +1,3 @@
-import { Image } from "lucide-react"
 import { useState } from "react"
 import { axiosInstance } from "../../utils/axios"
 
@@ -40,7 +39,7 @@ const Postform = () => {
     }
 
     return (
-        <div className="bg-gradient-to-r from-violet-600 to-fuchsia-600 h-fit py-4 rounded-xl border-b-2">
+        <div className="bg-gradient-to-tr from-fuchsia-500 to-purple-900 h-fit py-4 rounded-xl border-b-2">
             <div className="w-5/6 max-w-[800px] mx-auto space-y-3">
                 <input
                     type="text"
@@ -70,7 +69,7 @@ const Postform = () => {
                 <div className="flex justify-end px-2">
                     
                     <button 
-                        className="bg-[#6D28D9] text-white font-semibold rounded-md p-2 px-4" 
+                        className="bg-purple-950 text-[#fff] font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-gray-800 " 
                         onClick={createPost}
                     >
                         Post

@@ -1,15 +1,17 @@
-import { Bell, BriefcaseBusiness, Globe, House, Menu, MessageSquareText, Rss, Search, Users } from 'lucide-react';
+import { Bell, BriefcaseBusiness, Globe, House, LogOut, Menu,  Rss, Search, Users } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { axiosInstance } from '../../utils/axios';
 import { useNotifications } from '@/hooks/useNotifications';
 import { NotificationButton } from '../Notifications/NotificationButton';
+import useUser from '@/hooks/useUser';
 
 const Nav_Home = () => {
     const [showMenu, setShowMenu] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
     const [searchResults, setSearchResults] = useState<any[]>([]);
     const [showResults, setShowResults] = useState(false);
+    const {user} = useUser();
     
     const navigate = useNavigate();
     const { unreadCount } = useNotifications();
@@ -54,7 +56,7 @@ const Nav_Home = () => {
                 </div>
             </Link>
 
-            <div className='relative flex-1 max-w-md mx-4'>
+            <div className='relative flex-1 max-w-md mx-4 '>
                 <div className='flex bg-white/70 items-center rounded-md'>
                     <Search className='h-4 w-4 mx-1 text-[#4B0082]'/>
                     <input 
@@ -68,7 +70,7 @@ const Nav_Home = () => {
 
                 {/* Search Results Dropdown */}
                 {showResults && searchResults.length > 0 && (
-                    <div className="absolute w-full mt-1 bg-white rounded-md shadow-lg max-h-60 overflow-y-auto z-50">
+                    <div className="absolute w-full mt-1 bg-white rounded-md shadow-lg max-h-60 overflow-y-auto z-50 ">
                         {searchResults.map((user) => (
                             <Link 
                                 key={user._id} 
@@ -116,14 +118,46 @@ const Nav_Home = () => {
             </button>
 
             {showMenu && (
-                <aside className='fixed right-0 top-12 border-l h-full p-4 space-y-2 bg-white z-50'>
-                    <a href="/home" className="flex gap-2 items-center text-[#4B0082]"><House/><h3 className='text-xs'>Home</h3></a>
-                    <a href="/network" className="flex gap-2 items-center text-[#4B0082]"><Globe/><h3 className='text-xs'>My Network</h3></a>
-                    <a href="/jobs" className="flex gap-2 items-center text-[#4B0082]"><BriefcaseBusiness/><h3 className='text-xs'>Jobs</h3></a>
-                    <a href="/addConnection" className="flex gap-2 items-center text-[#4B0082]"><Users/><h3 className='text-xs'>Messaging</h3></a>
-                    <a href="/notifications" className="flex gap-2 items-center text-[#4B0082]"><Bell/><h3 className='text-xs'>Notifications</h3></a>
+                <aside className="fixed right-0 top-12 w-64 h-[90vh] p-4 bg-gradient-to-b from-[#5c3777] to-[#5d5d97] shadow-xl border-l rounded-l-xl z-50 flex flex-col justify-between text-white">
+                    {/* Navigation Links */}
+                    <div className="space-y-4">
+                    <a href="/home" className="flex items-center gap-3 hover:opacity-80 transition">
+                        <House size={22} />
+                        <h3 className="text-sm font-medium">Home</h3>
+                    </a>
+                    <a href="/network" className="flex items-center gap-3 hover:opacity-80 transition">
+                        <Globe size={22} />
+                        <h3 className="text-sm font-medium">My Network</h3>
+                    </a>
+                    <a href="/jobs" className="flex items-center gap-3 hover:opacity-80 transition">
+                        <BriefcaseBusiness size={22} />
+                        <h3 className="text-sm font-medium">Jobs</h3>
+                    </a>
+                    <a href="/addConnection" className="flex items-center gap-3 hover:opacity-80 transition">
+                        <Users size={22} />
+                        <h3 className="text-sm font-medium">Add Connection</h3>
+                    </a>
+                    <a href="/notifications" className="flex items-center gap-3 hover:opacity-80 transition">
+                        <Bell size={22} />
+                        <h3 className="text-sm font-medium">Notifications</h3>
+                    </a>
+                    </div>
+
+                    {/* Profile & Logout Section */}
+                    <div className="mt-auto border-t border-white/30 pt-4">
+                    <a href="/profile" className="flex items-center gap-3 p-2 hover:bg-white/20 rounded-lg transition">
+                        <img src={user.image} alt="" className="w-8 h-8 rounded-full border-2 border-white" />
+                        <h3 className="text-sm font-medium">{user.username}</h3>
+                    </a>
+                    <button onClick={logout} className="flex items-center gap-3 p-2 w-full hover:bg-red-500 transition mt-3 text-white rounded-lg">
+                        <LogOut size={22} />
+                        <span  className="text-sm font-medium">Logout</span>
+                    </button>
+                    </div>
                 </aside>
-            )}
+                )}
+
+
         </nav>
     );
 };

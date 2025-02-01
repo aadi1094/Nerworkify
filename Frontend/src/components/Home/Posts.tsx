@@ -136,7 +136,7 @@ export const Posts = () => {
 
         {(!posts || posts.length === 0) && (
           <div className="text-center py-10 bg-white rounded-xl shadow">
-            <p className="text-[#6B7280] text-lg">No posts yet</p>
+            <p className="text-[#6B7280] text-lg">Add connections to see posts</p>
           </div>
         )}
       </div>
