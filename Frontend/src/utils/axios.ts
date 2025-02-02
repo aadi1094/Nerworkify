@@ -1,9 +1,9 @@
 import axios from "axios";
 
 let token = localStorage.getItem("token")
-
+const API_URL = process.env.VITE_API_URL
 export const axiosInstance=axios.create({
-    baseURL:"http://localhost:3000",
+    baseURL:API_URL,
     headers:{
         token
     }

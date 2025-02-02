@@ -19,7 +19,7 @@ const Profile = () => {
             <p className="text-white text-sm ">{user.connections.length} connections</p>
             
         </div>
-    </div> : <div><Loader></Loader></div>
+    </div> : <div className='hidden md:block'><Loader></Loader></div>
        }
     </div>
   )
