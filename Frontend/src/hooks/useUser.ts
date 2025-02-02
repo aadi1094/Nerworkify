@@ -36,7 +36,8 @@ const useUser=()=>{
   return {
     user,
     post,
-    getPosts
+    getPosts,
+    revalidate: getUser
   }
 }
 
