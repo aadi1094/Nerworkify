@@ -82,7 +82,7 @@ const Nav_Home = () => {
                                 }}
                             >
                                 <div className="flex items-center gap-2">
-                                    {user.image && (
+                                    {user && user.image && (
                                         <img 
                                             src={user.image} 
                                             alt={user.username} 
