@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
-
-import { Building2, MapPin, ArrowUpRight, Search, Briefcase, Clock } from 'lucide-react';
+import { Building2, ArrowUpRight, Search, Briefcase, Clock } from 'lucide-react';
 import { axiosInstance } from '@/utils/axios';
 import Nav_Home from '@/components/Home/Nav_Home';
 
